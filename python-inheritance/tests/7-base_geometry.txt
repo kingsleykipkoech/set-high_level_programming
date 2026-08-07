@@ -1,0 +1,73 @@
+===========================
+How to use 7-base_geometry.py
+===========================
+
+This module defines a class ``BaseGeometry``.
+
+Usage
+=====
+
+``integer_validator()`` validates that value is a positive integer.
+
+::
+
+    >>> BaseGeometry = __import__('7-base_geometry').BaseGeometry
+    >>> bg = BaseGeometry()
+    >>> bg.integer_validator("my_int", 12)
+    >>> bg.integer_validator("width", 89)
+
+Not an integer:
+
+::
+
+    >>> bg.integer_validator("name", "John")
+    Traceback (most recent call last):
+    TypeError: name must be an integer
+
+Zero value:
+
+::
+
+    >>> bg.integer_validator("age", 0)
+    Traceback (most recent call last):
+    ValueError: age must be greater than 0
+
+Negative value:
+
+::
+
+    >>> bg.integer_validator("distance", -4)
+    Traceback (most recent call last):
+    ValueError: distance must be greater than 0
+
+Boolean value:
+
+::
+
+    >>> bg.integer_validator("flag", True)
+    Traceback (most recent call last):
+    TypeError: flag must be an integer
+
+None value:
+
+::
+
+    >>> bg.integer_validator("age", None)
+    Traceback (most recent call last):
+    TypeError: age must be an integer
+
+Float value:
+
+::
+
+    >>> bg.integer_validator("price", 4.5)
+    Traceback (most recent call last):
+    TypeError: price must be an integer
+
+area() is not implemented:
+
+::
+
+    >>> bg.area()
+    Traceback (most recent call last):
+    Exception: area() is not implemented
