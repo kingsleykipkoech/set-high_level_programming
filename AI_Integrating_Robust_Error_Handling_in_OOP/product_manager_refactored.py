@@ -21,9 +21,8 @@ class Product:
     @price.setter
     def price(self, value):
         if isinstance(value, bool) or not isinstance(value, (int, float)):
-            raise InvalidProductDataError(
-                f"Price must be a non-negative number (got {type(value).__name__}: {value!r})."
-            )
+            err = f"Price must be a number (got {type(value).__name__})."
+            raise InvalidProductDataError(err)
         if value < 0:
             raise InvalidProductDataError(
                 f"Price cannot be negative (got {value})."
@@ -37,9 +36,8 @@ class Product:
     @quantity.setter
     def quantity(self, value):
         if isinstance(value, bool) or not isinstance(value, int):
-            raise InvalidProductDataError(
-                f"Quantity must be a non-negative integer (got {type(value).__name__}: {value!r})."
-            )
+            err = f"Quantity must be an integer (got {type(value).__name__})."
+            raise InvalidProductDataError(err)
         if value < 0:
             raise InvalidProductDataError(
                 f"Quantity cannot be negative (got {value})."
@@ -48,7 +46,7 @@ class Product:
 
 
 class InventoryManager:
-    """Manages the collection of products and provides inventory operations."""
+    """Manages the collection of products and provides operations."""
 
     def __init__(self, inventory=None):
         self.inventory = inventory if inventory is not None else []
@@ -61,7 +59,7 @@ class InventoryManager:
         """Updates the quantity of a product by name."""
         for product in self.inventory:
             if product.name == name:
-                product.quantity = new_quantity  # Triggers quantity.setter validation
+                product.quantity = new_quantity  # Triggers setter validation
                 break
 
     def calculate_total_value(self):
@@ -74,7 +72,8 @@ class InventoryManager:
     def display_inventory(self):
         """Prints the current inventory list."""
         for product in self.inventory:
-            print(f"{product.name} - ${product.price:.2f} x {product.quantity}")
+            fmt = f"{product.name} - ${product.price:.2f} x {product.quantity}"
+            print(fmt)
 
 
 # Demo Usage
@@ -95,7 +94,8 @@ if __name__ == "__main__":
         ("Invalid Price Type", lambda: Product("Gadget", "invalid", 5)),
         ("Negative Quantity", lambda: Product("Gadget", 15.00, -3)),
         ("Float Quantity", lambda: Product("Gadget", 15.00, 4.5)),
-        ("Update to Negative Quantity", lambda: manager.update_quantity("Mouse", -5)),
+        ("Update to Negative Quantity",
+         lambda: manager.update_quantity("Mouse", -5)),
     ]
 
     for label, test in test_cases:
