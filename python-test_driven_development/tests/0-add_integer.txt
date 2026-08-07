@@ -58,3 +58,23 @@ Non-integer raises TypeError:
     >>> add_integer(4, None)
     Traceback (most recent call last):
     TypeError: b must be an integer
+
+Float overflow raises OverflowError:
+
+::
+
+    >>> add_integer(float('inf'), 0)
+    Traceback (most recent call last):
+    OverflowError: cannot convert float infinity to integer
+
+    >>> add_integer(0, float('inf'))
+    Traceback (most recent call last):
+    OverflowError: cannot convert float infinity to integer
+
+Float NaN raises ValueError:
+
+::
+
+    >>> add_integer(float('nan'))
+    Traceback (most recent call last):
+    ValueError: cannot convert float NaN to integer
