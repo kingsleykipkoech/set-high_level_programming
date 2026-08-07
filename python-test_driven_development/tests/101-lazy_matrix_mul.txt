@@ -18,3 +18,91 @@ Basic multiplication:
 
     >>> lazy_matrix_mul([[1, 2]], [[3, 4], [5, 6]])
     array([[13, 16]])
+
+m_a is a string:
+
+::
+
+    >>> lazy_matrix_mul("string", [[1, 2]])
+    Traceback (most recent call last):
+    TypeError: m_a must be a list
+
+m_b is a string:
+
+::
+
+    >>> lazy_matrix_mul([[1, 2]], "string")
+    Traceback (most recent call last):
+    TypeError: m_b must be a list
+
+m_a is empty:
+
+::
+
+    >>> lazy_matrix_mul([], [[1, 2]])
+    Traceback (most recent call last):
+    ValueError: m_a can't be empty
+
+m_b is empty:
+
+::
+
+    >>> lazy_matrix_mul([[1, 2]], [])
+    Traceback (most recent call last):
+    ValueError: m_b can't be empty
+
+m_a contains non-numbers:
+
+::
+
+    >>> lazy_matrix_mul([["a", 2]], [[1, 2]])
+    Traceback (most recent call last):
+    TypeError: m_a should contain only integers or floats
+
+m_b contains non-numbers:
+
+::
+
+    >>> lazy_matrix_mul([[1, 2]], [["a", 2]])
+    Traceback (most recent call last):
+    TypeError: m_b should contain only integers or floats
+
+m_a rows of different sizes:
+
+::
+
+    >>> lazy_matrix_mul([[1, 2], [3, 4, 5]], [[1, 2]])
+    Traceback (most recent call last):
+    TypeError: each row of m_a must be of the same size
+
+m_b rows of different sizes:
+
+::
+
+    >>> lazy_matrix_mul([[1, 2]], [[1, 2], [3, 4, 5]])
+    Traceback (most recent call last):
+    TypeError: each row of m_b must be of the same size
+
+m_a and m_b cannot be multiplied:
+
+::
+
+    >>> lazy_matrix_mul([[1, 2]], [[1, 2], [3, 4], [5, 6]])
+    Traceback (most recent call last):
+    ValueError: m_a and m_b can't be multiplied
+
+Missing one argument:
+
+::
+
+    >>> lazy_matrix_mul([[1, 2]])
+    Traceback (most recent call last):
+    TypeError: lazy_matrix_mul() missing 1 required positional argument: 'm_b'
+
+Missing two arguments:
+
+::
+
+    >>> lazy_matrix_mul()
+    Traceback (most recent call last):
+    TypeError: lazy_matrix_mul() missing 2 required positional arguments: 'm_a' and 'm_b'
