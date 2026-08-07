@@ -1,7 +1,7 @@
 # AI: Integrating Robust Error Handling in OOP
 
 ## Task Objective
-Enhance the object-oriented `Product` and `InventoryManager` application by applying AI-assisted scaffolding to integrate robust data validation and exception handling. Using Python's `@property` decorators and a custom exception class (`InvalidProductDataError`), we protect the internal object state from illegal attribute assignments (such as negative prices or quantities) and enforce data integrity.
+Enhance the object-oriented `Product` and `InventoryManager` application by applying AI-assisted scaffolding to integrate robust data validation and exception handling. Using Python's `@property` decorators and a custom exception class (`InvalidProductDataError`), we protect internal object state from illegal attribute assignments (such as negative prices or quantities) and enforce data integrity.
 
 ---
 
@@ -24,11 +24,11 @@ By applying `@property` and `@<attribute>.setter`:
 ### 2. Utility of Custom Exceptions (`InvalidProductDataError`)
 Instead of allowing silent data corruption (e.g., negative inventory calculations or invalid string multiplication) or raising generic language-level exceptions, `InvalidProductDataError` provides domain-specific clarity.
 
-#### Test Execution Result:
-When attempting an illegal update (`manager.inventory[0].quantity = -5`), the application outputs:
+#### Mandatory Assignment Test Execution Result:
+When executing the test snippet (`manager.inventory[0].quantity = -5`), the application outputs:
 ```text
 --- Testing Invalid Input ---
-Test result: Quantity cannot be negative, got -5.
+Test result: Quantity cannot be negative (got -5).
 ```
 The error is caught gracefully, explaining precisely what broke, while the overall program execution remains stable.
 
@@ -40,6 +40,6 @@ The error is caught gracefully, explaining precisely what broke, while the overa
 ---
 
 ## File Structure
-- `product_manager_initial.py`: Unmodified starter template.
-- `product_manager_refactored.py`: Enhanced script with `@property` validation, `InvalidProductDataError`, and edge-case testing.
+- `product_manager_initial.py`: Unmodified starter template code.
+- `product_manager_refactored.py`: Enhanced script with `@property` validation, `InvalidProductDataError`, and validation testing.
 - `README.md`: Complete task documentation and analysis.
