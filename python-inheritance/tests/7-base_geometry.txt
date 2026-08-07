@@ -16,7 +16,31 @@ Usage
     >>> bg.integer_validator("my_int", 12)
     >>> bg.integer_validator("width", 89)
 
-Not an integer:
+Called with no arguments at all:
+
+::
+
+    >>> bg.integer_validator()
+    Traceback (most recent call last):
+    TypeError: BaseGeometry.integer_validator() missing 2 required positional arguments: 'name' and 'value'
+
+Called with only one argument:
+
+::
+
+    >>> bg.integer_validator("age")
+    Traceback (most recent call last):
+    TypeError: BaseGeometry.integer_validator() missing 1 required positional argument: 'value'
+
+Float value:
+
+::
+
+    >>> bg.integer_validator("age", 1.4)
+    Traceback (most recent call last):
+    TypeError: age must be an integer
+
+Not an integer (string):
 
 ::
 
@@ -40,6 +64,14 @@ Negative value:
     Traceback (most recent call last):
     ValueError: distance must be greater than 0
 
+Tuple value:
+
+::
+
+    >>> bg.integer_validator("age", (3,))
+    Traceback (most recent call last):
+    TypeError: age must be an integer
+
 Boolean value:
 
 ::
@@ -56,13 +88,13 @@ None value:
     Traceback (most recent call last):
     TypeError: age must be an integer
 
-Float value:
+List value:
 
 ::
 
-    >>> bg.integer_validator("price", 4.5)
+    >>> bg.integer_validator("age", [3])
     Traceback (most recent call last):
-    TypeError: price must be an integer
+    TypeError: age must be an integer
 
 area() is not implemented:
 
