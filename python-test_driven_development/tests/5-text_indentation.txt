@@ -1,0 +1,81 @@
+================================
+How to use 5-text_indentation.py
+================================
+
+This module provides ``text_indentation(text)``.
+
+Usage
+=====
+
+Basic usage with multiple punctuation marks:
+
+::
+
+    >>> text_indentation = __import__('5-text_indentation').text_indentation
+    >>> text_indentation("Hello.")
+    Hello.
+    <BLANKLINE>
+
+Question mark:
+
+::
+
+    >>> text_indentation("How are you?")
+    How are you?
+    <BLANKLINE>
+
+Colon:
+
+::
+
+    >>> text_indentation("Items:")
+    Items:
+    <BLANKLINE>
+
+Multiple punctuation marks:
+
+::
+
+    >>> text_indentation("Hello. How are you? Good:")
+    Hello.
+    <BLANKLINE>
+    How are you?
+    <BLANKLINE>
+    Good:
+    <BLANKLINE>
+
+No punctuation:
+
+::
+
+    >>> text_indentation("Hello there")
+    Hello there
+
+Spaces around punctuation are stripped:
+
+::
+
+    >>> text_indentation("Hello.   World.")
+    Hello.
+    <BLANKLINE>
+    World.
+    <BLANKLINE>
+
+Non-string raises TypeError:
+
+::
+
+    >>> text_indentation(42)
+    Traceback (most recent call last):
+    TypeError: text must be a string
+
+    >>> text_indentation(None)
+    Traceback (most recent call last):
+    TypeError: text must be a string
+
+Empty string:
+
+::
+
+    >>> text_indentation("")
+
