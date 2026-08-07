@@ -22,6 +22,34 @@ Float divisor:
     >>> matrix_divided([[1, 2], [3, 4]], 2.0)
     [[0.5, 1.0], [1.5, 2.0]]
 
+Divisor is infinity:
+
+::
+
+    >>> matrix_divided([[1, 2, 3], [4, 5, 6]], float('inf'))
+    [[0.0, 0.0, 0.0], [0.0, 0.0, 0.0]]
+
+Matrix contains float infinity:
+
+::
+
+    >>> matrix_divided([[1, float('inf')], [3, 4]], 2)
+    [[0.5, inf], [1.5, 2.0]]
+
+Matrix contains float nan:
+
+::
+
+    >>> matrix_divided([[1, float('nan')], [3, 4]], 2)
+    [[0.5, nan], [1.5, 2.0]]
+
+Matrix and divisor contain float infinity/nan:
+
+::
+
+    >>> matrix_divided([[1, float('inf')], [3, 4]], float('inf'))
+    [[0.0, nan], [0.0, 0.0]]
+
 Division by zero:
 
 ::
@@ -61,3 +89,19 @@ Matrix contains non-numbers:
     >>> matrix_divided([[1, "a"], [3, 4]], 2)
     Traceback (most recent call last):
     TypeError: matrix must be a matrix (list of lists) of integers/floats
+
+Missing 1 argument:
+
+::
+
+    >>> matrix_divided([[1, 2]])
+    Traceback (most recent call last):
+    TypeError: matrix_divided() missing 1 required positional argument: 'div'
+
+Missing 2 arguments:
+
+::
+
+    >>> matrix_divided()
+    Traceback (most recent call last):
+    TypeError: matrix_divided() missing 2 required positional arguments: 'matrix' and 'div'

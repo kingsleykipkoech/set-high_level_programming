@@ -19,77 +19,77 @@ Basic multiplication:
     >>> lazy_matrix_mul([[1, 2]], [[3, 4], [5, 6]])
     array([[13, 16]])
 
-m_a is a string:
+Scalar m_a string:
 
 ::
 
-    >>> lazy_matrix_mul("string", [[1, 2]])
+    >>> lazy_matrix_mul("ALX", [[5, 6], [7, 8]])
     Traceback (most recent call last):
-    TypeError: m_a must be a list
+    TypeError: Scalar operands are not allowed, use '*' instead
 
-m_b is a string:
+Scalar m_b string:
 
 ::
 
-    >>> lazy_matrix_mul([[1, 2]], "string")
+    >>> lazy_matrix_mul([[5, 6], [7, 8]], "ALX")
     Traceback (most recent call last):
-    TypeError: m_b must be a list
+    TypeError: Scalar operands are not allowed, use '*' instead
 
-m_a is empty:
+m_a empty:
 
 ::
 
-    >>> lazy_matrix_mul([], [[1, 2]])
+    >>> lazy_matrix_mul([[]], [[5, 6], [7, 8]])
     Traceback (most recent call last):
-    ValueError: m_a can't be empty
+    ValueError: shapes (1,0) and (2,2) not aligned: 0 (dim 1) != 2 (dim 0)
 
-m_b is empty:
+m_b empty:
 
 ::
 
-    >>> lazy_matrix_mul([[1, 2]], [])
+    >>> lazy_matrix_mul([[5, 6], [7, 8]], [[]])
     Traceback (most recent call last):
-    ValueError: m_b can't be empty
+    ValueError: shapes (2,2) and (1,0) not aligned: 2 (dim 1) != 1 (dim 0)
 
 m_a contains non-numbers:
 
 ::
 
-    >>> lazy_matrix_mul([["a", 2]], [[1, 2]])
+    >>> lazy_matrix_mul([[5, "6"], [7, 8]], [[5, 6], [7, 8]])
     Traceback (most recent call last):
-    TypeError: m_a should contain only integers or floats
+    TypeError: invalid data type for einsum
 
 m_b contains non-numbers:
 
 ::
 
-    >>> lazy_matrix_mul([[1, 2]], [["a", 2]])
+    >>> lazy_matrix_mul([[5, 6], [7, 8]], [[5, "6"], [7, 8]])
     Traceback (most recent call last):
-    TypeError: m_b should contain only integers or floats
+    TypeError: invalid data type for einsum
 
 m_a rows of different sizes:
 
 ::
 
-    >>> lazy_matrix_mul([[1, 2], [3, 4, 5]], [[1, 2]])
+    >>> lazy_matrix_mul([[5, 6, 10], [7, 8]], [[5, 6], [7, 8]])
     Traceback (most recent call last):
-    TypeError: each row of m_a must be of the same size
+    ValueError: setting an array element with a sequence.
 
 m_b rows of different sizes:
 
 ::
 
-    >>> lazy_matrix_mul([[1, 2]], [[1, 2], [3, 4, 5]])
+    >>> lazy_matrix_mul([[5, 6], [7, 8]], [[5, 6, 1], [7, 8]])
     Traceback (most recent call last):
-    TypeError: each row of m_b must be of the same size
+    ValueError: setting an array element with a sequence.
 
-m_a and m_b cannot be multiplied:
+Incompatible shapes:
 
 ::
 
-    >>> lazy_matrix_mul([[1, 2]], [[1, 2], [3, 4], [5, 6]])
+    >>> lazy_matrix_mul([[1, 2, 3], [3, 4, 5]], [[1, 2], [3, 4]])
     Traceback (most recent call last):
-    ValueError: m_a and m_b can't be multiplied
+    ValueError: shapes (2,3) and (2,2) not aligned: 3 (dim 1) != 2 (dim 0)
 
 Missing one argument:
 
