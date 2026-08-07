@@ -13,20 +13,20 @@ def matrix_divided(matrix, div):
         new matrix with all elements divided by div, rounded to 2 decimals
     """
     msg = "matrix must be a matrix (list of lists) of integers/floats"
-    if not isinstance(matrix, list) or len(matrix) == 0:
+    if type(matrix) is not list or len(matrix) == 0:
         raise TypeError(msg)
     row_len = None
     for row in matrix:
-        if not isinstance(row, list):
+        if type(row) is not list:
             raise TypeError(msg)
-        for el in row:
-            if not isinstance(el, (int, float)):
-                raise TypeError(msg)
         if row_len is None:
             row_len = len(row)
         elif len(row) != row_len:
             raise TypeError("Each row of the matrix must have the same size")
-    if not isinstance(div, (int, float)):
+        for el in row:
+            if type(el) is not int and type(el) is not float:
+                raise TypeError(msg)
+    if type(div) is not int and type(div) is not float:
         raise TypeError("div must be a number")
     if div == 0:
         raise ZeroDivisionError("division by zero")
