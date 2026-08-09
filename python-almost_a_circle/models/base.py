@@ -153,3 +153,51 @@ class Base:
                     }
                 instances.append(cls.create(**d))
         return instances
+
+    @staticmethod
+    def draw(list_rectangles, list_squares):
+        """Opens a window and draws all Rectangles and Squares.
+
+        Args:
+            list_rectangles (list): list of Rectangle instances
+            list_squares (list): list of Square instances
+        """
+        import turtle
+
+        t = turtle.Turtle()
+        t.speed(2)
+        t.pensize(2)
+        screen = turtle.Screen()
+        screen.bgcolor("#1a1a2e")
+        screen.title("Almost a Circle - Shapes")
+
+        rect_colors = ["#e94560", "#0f3460", "#16213e"]
+        sq_colors = ["#533483", "#e94560", "#0f3460"]
+
+        t.penup()
+        for i, rect in enumerate(list_rectangles):
+            t.goto(rect.x, rect.y)
+            t.pendown()
+            t.color(rect_colors[i % len(rect_colors)])
+            t.begin_fill()
+            for _ in range(2):
+                t.forward(rect.width)
+                t.left(90)
+                t.forward(rect.height)
+                t.left(90)
+            t.end_fill()
+            t.penup()
+
+        for i, sq in enumerate(list_squares):
+            t.goto(sq.x, sq.y)
+            t.pendown()
+            t.color(sq_colors[i % len(sq_colors)])
+            t.begin_fill()
+            for _ in range(4):
+                t.forward(sq.size)
+                t.left(90)
+            t.end_fill()
+            t.penup()
+
+        t.hideturtle()
+        turtle.exitonclick()
